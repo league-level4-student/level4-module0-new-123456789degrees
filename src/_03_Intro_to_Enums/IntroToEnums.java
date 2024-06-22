@@ -14,18 +14,7 @@ enum Elements {
 	// Note: Every entry must be unique.
 	AIR, EARTH, FIRE, METAL, WATER, WOOD
 }
-enum StatesOfMatter {
-	SOLID, LIQUID, GAS;
-	double celciusTemp;
-	public double getCelciusTemp() {
-		return celciusTemp;
-	}
-	public double convertToFahrenheit() {
-		return (celciusTemp * 9/5) + 32;
-	}
-}
 public class IntroToEnums {
-
 	public static void main(String[] args) {
 
 		// 1. In your package explorer, create a new enum file called StatesOfMatter.
