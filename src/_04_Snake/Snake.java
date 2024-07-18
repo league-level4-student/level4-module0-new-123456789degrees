@@ -11,7 +11,7 @@ public class Snake {
 
 	private SnakeSegment head;
 	private ArrayList<SnakeSegment> snake;
-
+	boolean canChangeDirection = true;
 	private Direction currentDirection;
 
 	private boolean canMove = true;
@@ -64,7 +64,6 @@ public class Snake {
 		Location location = new Location(nextX, nextY);
 		head.setLocation(location);
 		// Set the canMove member variable to true.
-		canMove = true;
 	}
 
 	public void setDirection(Direction direction) {
@@ -76,7 +75,7 @@ public class Snake {
 		 * 
 		 * Hint: Use the isNotOppositeDirection method.
 		 */
-		if (isNotOppositeDirection(direction)) {
+		if (isNotOppositeDirection(direction) && canMove) {
 			currentDirection = direction;
 			canMove = false;
 		}
@@ -131,7 +130,9 @@ public class Snake {
 		 * Complete the method so it returns true if the head of the snake is outside of
 		 * the window and false otherwise.
 		 */
-		if (head.getLocation().getX() > SnakeGame.WIDTH || head.getLocation().getX() < 0 || head.getLocation().getY() > SnakeGame.HEIGHT || head.getLocation().getY() < 0) {
+		if (head.getLocation().getX() >=
+			SnakeGame.WIDTH || head.getLocation().getX() < 0 || head.getLocation().getY() >= SnakeGame.HEIGHT || head.getLocation().getY() < 0) {
+			System.out.println("Out of bounds.");
 			return true;
 		}
 		return false;
@@ -145,6 +146,7 @@ public class Snake {
 		 */
 		for (int i = 1; i < snake.size(); i++) {
 			if (head.getLocation().equals(snake.get(i).getLocation())) {
+				System.out.println("Head colliding with body.");
 				return true;
 			}
 		}
@@ -169,5 +171,6 @@ public class Snake {
 		for (SnakeSegment s : snake) {
 			s.draw(g);
 		}
+		canMove = true;
 	}
 }
